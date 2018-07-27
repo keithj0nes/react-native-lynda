@@ -24,13 +24,8 @@ class NativeCourses extends Component {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Button
-          title='React Courses'
-          onPress={() => navigate('ReactCourses')}/>
 
-          <Text style={styles.welcome}>React Courses</Text>
-
-
+        <Text style={styles.welcome}>React Native Courses</Text>
         <ListView
           dataSource={dataSource}
           renderRow={(rowData) =>
@@ -47,8 +42,7 @@ class NativeCourses extends Component {
                 style={{width: 400, height: 200}} />
 
             </View>
-          }
-        />
+          } />
       </View>
     )
   }
@@ -58,7 +52,7 @@ const styles = {
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-    paddingTop: 10
+    paddingTop: 30
   },
   welcome: {
     fontSize: 20,

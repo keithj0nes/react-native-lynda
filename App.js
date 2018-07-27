@@ -12,7 +12,6 @@ const App = createBottomTabNavigator({
 }, {
   tabBarOptions: {
     activeTintColor: '#E91E63',
-    swipeEnabled: true
   }
 });
 
