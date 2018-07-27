@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Button, ListView, Image } from 'react-native';
+import { View, Text, Button, ListView, Image, TouchableOpacity, Linking } from 'react-native';
 import data from '../data/courses.json';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { getTheme } from 'react-native-material-kit';
+
+const theme = getTheme();
 
 const ds = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1 !== r2
@@ -20,6 +23,18 @@ class NativeCourses extends Component {
       }
   }
 
+  handleClick = (link) => {
+    Linking.canOpenURL(link).then(supported => {
+      console.log(supported, 'supported');
+      if(supported){
+        console.log('opening url now');
+        Linking.openURL(link);
+      } else {
+        console.log('DONT KNOW HOW TO OPEN URL');
+      }
+    })
+  }
+
   render(){
     const {navigate} = this.props.navigation;
     return (
@@ -29,17 +44,18 @@ class NativeCourses extends Component {
         <ListView
           dataSource={dataSource}
           renderRow={(rowData) =>
-            <View>
-              <Text>{rowData.title}</Text>
-              <Text>{rowData.description}</Text>
-              <Text>{rowData.views}</Text>
-              <Button
-                onPress={()=>{console.log('pressedin rncourses')}}
-                title="Link to course" />
-              <Text>{rowData.link}</Text>
+            <View style={theme.cardStyle}>
               <Image
-                source={{uri: rowData.image}}
-                style={{width: 400, height: 200}} />
+              source={{uri: rowData.image}}
+              style={theme.cardImageStyle} />
+
+              <Text style={theme.cardTitleStyle}>{rowData.title}</Text>
+              <Text style={theme.cardContentStyle}>{rowData.description}</Text>
+              <Text style={theme.cardActionStyle}
+                onPress={()=>{
+                  this.handleClick(rowData.link)
+                }}
+                >Tap to view course</Text>
 
             </View>
           } />

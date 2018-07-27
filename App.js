@@ -11,7 +11,11 @@ const App = createBottomTabNavigator({
   NativeCourses: {screen: NativeCourses}
 }, {
   tabBarOptions: {
-    activeTintColor: '#E91E63',
+    activeTintColor: 'white',
+    inactiveTintColor: '#80CBC4',
+    style: {
+      backgroundColor: '#25A69A'
+    }
   }
 });
 
