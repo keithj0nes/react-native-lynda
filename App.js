@@ -3,12 +3,17 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import ReactCourses from './src/components/ReactCourses';
 import NativeCourses from './src/components/NativeCourses';
 
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 
-const App = createStackNavigator({
+const App = createBottomTabNavigator({
   ReactCourses: {screen: ReactCourses},
   NativeCourses: {screen: NativeCourses}
+}, {
+  tabBarOptions: {
+    activeTintColor: '#E91E63',
+    swipeEnabled: true
+  }
 });
 
 export default App;
